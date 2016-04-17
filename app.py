@@ -31,6 +31,10 @@ def createFood():
 def diary():
 	return render_template('diary.html', name=name)
 
+@app.route('/goals')
+def goals():
+	return render_template('goals.html', name=name)
+
 if __name__ == '__main__':
 	app.run(debug = True)
 

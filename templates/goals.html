@@ -1,0 +1,51 @@
+{% extends 'navbar.html' %}
+{% block body %}
+
+<style>
+@media screen and (min-device-width : 375px) and (max-device-width : 667px){
+	body{
+		padding-top:10%;
+	}
+	label{
+		font-size: 200%;
+	}
+}
+</style>
+
+<div class="container center_div" style="padding-left:5%; padding-right:5%; padding-top:10%;">
+<div class="container" style="margin-bottom:5%; padding-left:0px;">
+	<h1>Goals</h1>
+</div>
+<form method="post">
+<div class="form-group row">
+    <label for="Carbs" class="col-sm-2 form-control-label">Carbohydrates</label>
+    <div class="input-group `:w
+col-sm-10" style="width:10%; padding-left:15px; padding-right: 15px">
+      <input class="form-control" id="Carbs" placeholder="0">
+	<div class="input-group-addon">g</div>
+    </div>
+  </div>
+  <div class="form-group row">
+    <label for="Fiber" class="col-sm-2 form-control-label">Fiber</label>
+    <div class="input-group col-sm-10" style="width:10%; padding-left: 15px; padding-right: 15px;">
+      <input  class="form-control" id="Fiber" placeholder="0">
+	<div class="input-group-addon">g</div>
+    </div>
+  </div>
+<div class="form-group row">
+    <label for="Calories" class="col-sm-2 form-control-label">Calories</label>
+    <div id="inputForm" class="input-group col-sm-10" style="width: 10%; padding-left: 15px; padding-right: 15px;">
+      <input class="form-control" id="Calories" placeholder="0">
+    </div>
+  </div>
+      <button type="submit" class="btn btn-success">Create</button>
+</form>
+</div>
+
+<div class="container">
+<div class="alert alert-success" role="alert" style="margin-top:3%; margin-left:5%; margin-right:13%;">
+	<strong>Added!</strong>
+	Your food has been created.
+	</div>
+</div>
+{% endblock %}
