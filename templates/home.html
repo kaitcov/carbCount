@@ -1,39 +1,5 @@
-{% extends 'layout.html' %}
-{% block content %}
-
-<!-- Fixed navbar -->
-    <nav class="navbar navbar-inverse navbar-fixed-top">
-      <div class="container">
-        <div class="navbar-header">
-          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
-            <span class="sr-only">Toggle navigation</span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-          </button>
-          <a class="navbar-brand" href="/home/{{name}}">Carb Count</a>
-        </div>
-        <div id="navbar" class="navbar-collapse collapse">
-          <ul class="nav navbar-nav">
-            <li><a href="#">My Foods</a></li>
-            <li><a href="#about">Diary</a></li>
-            <li><a href="#contact">Stats</a></li>
-            <li class="dropdown">
-              <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Account<span class="caret"></span></a>
-              <ul class="dropdown-menu">
-                <li><a href="#">{{name}}</a></li>
-                <li><a href="#">Another action</a></li>
-                <li><a href="#">Something else here</a></li>
-                <li role="separator" class="divider"></li>
-                <li class="dropdown-header">Nav header</li>
-                <li><a href="#">Separated link</a></li>
-                <li><a href="#">One more separated link</a></li>
-              </ul>
-            </li>
-          </ul>
-        </div><!--/.nav-collapse -->
-      </div>
-    </nav>
+{% extends 'navbar.html' %}
+{% block body %}
 
 <div class="container theme-showcase" role="main">
 <!-- Main jumbotron for a primary marketing message or call to action -->
@@ -46,7 +12,7 @@
 <!-- Three columns of text below the carousel -->
       <div class="row">
         <div class="col-lg-4">
-          <img class="img-circle" src="https://image.freepik.com/free-icon/fork-and-knife-cutlery-circle-interface-symbol-for-restaurant_318-61359.png" alt="Generic placeholder image" width="140" height="140">
+        <a href="/createFood"><img class="img-circle" src="https://image.freepik.com/free-icon/fork-and-knife-cutlery-circle-interface-symbol-for-restaurant_318-61359.png" alt="Generic placeholder image" width="140" height="140"></a>
           <h2>Create Food</h2>
           <p>Customize your food so the information is accurate and is only things you actually eat.</p>
         </div><!-- /.col-lg-4 -->
@@ -56,7 +22,7 @@
           <p>Log your meals so you can track your goals for carbs or calories.</p>
         </div><!-- /.col-lg-4 -->
         <div class="col-lg-4">
-        <a href="../about">  <img class="img-circle" src="http://cdn.mysitemyway.com/icons-watermarks/simple-black/raphael/raphael_question-mark-circle/raphael_question-mark-circle_simple-black_512x512.png" alt="Generic placeholder image" width="140" height="140"> </a>
+        <a href="/about">  <img class="img-circle" src="http://cdn.mysitemyway.com/icons-watermarks/simple-black/raphael/raphael_question-mark-circle/raphael_question-mark-circle_simple-black_512x512.png" alt="Generic placeholder image" width="140" height="140"> </a>
 	 <h2>About</h2>
           <p>Learn why Carb Count exists and how it can help you manage your health.</p>
         </div><!-- /.col-lg-4 -->

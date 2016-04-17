@@ -23,6 +23,10 @@ def home():
 def about():
 	return render_template('about.html', name=name)
 
+@app.route('/createFood')
+def createFood():
+	return render_template('createFood.html', name=name)
+
 if __name__ == '__main__':
 	app.run(debug = True)
 
