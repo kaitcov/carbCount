@@ -27,6 +27,10 @@ def about():
 def createFood():
 	return render_template('createFood.html', name=name)
 
+@app.route('/diary')
+def diary():
+	return render_template('diary.html', name=name)
+
 if __name__ == '__main__':
 	app.run(debug = True)
 
