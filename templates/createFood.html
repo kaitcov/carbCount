@@ -17,34 +17,33 @@
 <div class="form-group row">
     <label for="name" class="col-sm-2 form-control-label">Name</label>
     <div class="col-sm-10" style="width:75%;">
-      <input class="form-control" id="Name" placeholder="Name">
+		<input class="form-control" id="Name" name="foodName" placeholder="Name" value="{{request.form.foodName}}">
     </div>
   </div>
   <div class="form-group row">
     <label for="Serving Size" class="col-sm-2 form-control-label">Serving Size</label>
     <div class="col-sm-10" style="width:75%;">
-      <input  class="form-control" id="Serving Size" placeholder="1 tbs, oz, cup">
+		<input  class="form-control" id="Serving Size" name="foodSize" placeholder="1 tbs, oz, cup" value="{{request.form.foodSize}}">
     </div>
   </div>
 <div class="form-group row">
     <label for="carbs" class="col-sm-2 form-control-label">Carbohydrates</label>
     <div id="inputForm" class="input-group col-sm-10" style="width: 10%; padding-left: 15px; padding-right: 15px;">
-      <input class="form-control" id="Carbs" placeholder="0">
+      <input class="form-control" id="Carbs" placeholder="0" name="foodCarbs" value="{{request.form.foodCarbs}}">
 	<div class="input-group-addon">g</div>
     </div>
   </div>
 <div class="form-group row">
     <label for="fiber" class="col-sm-2 form-control-label">Fiber</label>
     <div id="inputForm" class="input-group col-sm-10" style="width: 10%; padding-left: 15px; padding-right: 15px;">
-      <input class="form-control" id="Fiber" placeholder="0">
+      <input class="form-control" id="Fiber" placeholder="0" name="foodFiber" value="{{request.form.foodFiber}}">
 	<div class="input-group-addon">g</div>
     </div>
   </div>
 <div class="form-group row">
     <label for="name" class="col-sm-2 form-control-label">Calories</label>
     <div id="inputForm" class="input-group col-sm-10" style="width: 10%; padding-left: 15px; padding-right: 15px;">
-      <input class="form-control" id="Calories" placeholder="0">
-	<div class="input-group-addon">g</div>
+      <input class="form-control" id="Calories" placeholder="0" name="foodCalories" value="{{request.form.foodCalories}}">
     </div>
   </div>
   <div class="form-group row">
