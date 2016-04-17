@@ -10,7 +10,7 @@ db = client.ccDatabase
 foods = db.foods
 people = db.people
 meals = db.meals
-goals = db.goals
+goalsColl = db.goals
 
 name=None
 
@@ -55,7 +55,9 @@ def diary():
 	totalCarbs = 0
 	totalFiber = 0
 	totalCalories = 0
-	print foods.find_one({'user':name})
+	goalCarbs = 0
+	goalFiber = 0
+	goalCalories = 0
 	now = datetime.datetime.now()
 	day = str(now.month) + "/" + str(now.day) + "/" + str(now.year)
 	breakfastList = []
@@ -65,6 +67,11 @@ def diary():
 	post = {'user':name, 'date':day, 'breakfast':[], 'lunch':[], 'dinner':[], 'snack':[]}
 	meal_response = meals.insert_one(post).inserted_id
 	meal = meals.find_one({'user':name, 'date':day})		
+	goalFind = goalsColl.find_one({'user':name})
+	if goalFind != None:
+		goalCarbs = goalFind['goalCarbs']
+		goalFiber = goalFind['goalFiber']
+		goalCalories = goalFind['goalCalories']
 	for item in meal['breakfast']:
 		foodResult = foods.find_one({"_id":ObjectId(item['foodID'])})
 		totalCarbs += int(foodResult['foodCarbs'])
@@ -98,11 +105,15 @@ def diary():
 	foodList = []
 	for food in foodResponse:
 		foodList.append(food)
-	return render_template('diary.html', name=name, foodList=foodList, day=day, breakfastList=breakfastList, lunchList=lunchList, dinnerList=dinnerList, snackList=snackList, totalCarbs=totalCarbs, totalFiber=totalFiber, totalCalories=totalCalories)
+	return render_template('diary.html', name=name, foodList=foodList, day=day, breakfastList=breakfastList, lunchList=lunchList, dinnerList=dinnerList, snackList=snackList, totalCarbs=totalCarbs, totalFiber=totalFiber, totalCalories=totalCalories, goalCarbs=goalCarbs, goalFiber=goalFiber, goalCalories=goalCalories)
 
-@app.route('/goals')
+@app.route('/goals', methods=['GET', 'POST'])
 def goals():
-	return render_template('goals.html', name=name)
+	goal_response = None
+	if request.method == "POST":
+		post = {'user':name, 'goalCarbs':request.form['goalCarbs'], 'goalFiber':request.form['goalFiber'], 'goalCalories':request.form['goalCalories']}
+		goal_response = goalsColl.insert_one(post).inserted_id
+	return render_template('goals.html', name=name, goal_response=goal_response)
 
 if __name__ == '__main__':
 	app.run(debug = True)
