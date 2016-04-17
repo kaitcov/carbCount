@@ -36,6 +36,7 @@ def about():
 
 @app.route('/createFood', methods=['GET', 'POST'])
 def createFood():
+	food_id = None
 	if request.method == 'POST':
 		foodName = request.form['foodName']
 		foodSize = request.form['foodSize']
@@ -44,10 +45,8 @@ def createFood():
 		foodCalories = request.form['foodCalories']
 		post = {"user":name, "foodName":foodName, "foodSize":foodSize, "foodCarbs":foodCarbs, "foodFiber":foodFiber, "foodCalories":foodCalories}
 		food_id = foods.insert_one(post).inserted_id
-		for item in foods.find({"name":name}):
-			print item
 
-	return render_template('createFood.html', name=name)
+	return render_template('createFood.html', name=name, food_id=food_id)
 
 @app.route('/diary', methods=['GET', 'POST'])
 def diary():
@@ -61,13 +60,25 @@ def diary():
 		meal_response = meals.insert_one(post).inserted_id
 		result = meals.update_one({'user':name, 'date':day}, { '$push': {selectedFood[1]: {'foodID': selectedFood[0]}}})
 		print result.matched_count
-		meal = meals.find_one({'user':name, 'date':day})
-		print meal['breakfast']
+		breakfastList = []
+		lunchList = []
+		dinnerList = []
+		snackList = []
+		if result.matched_count != 0:
+			meal = meals.find_one({'user':name, 'date':day})
+			for item in meal['breakfast']:
+				breakfastList.append(item)
+			for item in meal['lunch']:
+				lunchList.append(item)
+			for item in meal['dinner']:
+				dinnerList.append(item)
+			for item in meal['snack']:
+				snackList.append(item)
 	foodResponse = foods.find({"user":name})
 	foodList = []
 	for food in foodResponse:
 		foodList.append(food)
-	return render_template('diary.html', name=name, foodList=foodList, day=day)
+	return render_template('diary.html', name=name, foodList=foodList, day=day, breakfastList=breakfastList, lunchList=lunchList, dinnerList=dinnerList, snackList=snackList)
 
 if __name__ == '__main__':
 	app.run(debug = True)
