@@ -1,5 +1,6 @@
 from flask import Flask, render_template, redirect, url_for, request
 from pymongo import MongoClient
+import datetime
 
 app = Flask(__name__)
 
@@ -48,9 +49,25 @@ def createFood():
 
 	return render_template('createFood.html', name=name)
 
-@app.route('/diary')
+@app.route('/diary', methods=['GET', 'POST'])
 def diary():
-	return render_template('diary.html', name=name)
+	now = datetime.datetime.now()
+	day = str(now.month) + "/" + str(now.day) + "/" + str(now.year)
+	if request.method == "POST":
+		selectedFood = request.form.get('userFoods')
+		selectedFood = selectedFood.split(',')
+		print selectedFood[1]
+		post = {'user':name, 'date':day, selectedFood[1]:[]}
+		meal_response = meals.insert_one(post).inserted_id
+		result = meals.update_one({'user':name, 'date':day}, { '$push': {selectedFood[1]: {'foodID': selectedFood[0]}}})
+		print result.matched_count
+		meal = meals.find_one({'user':name, 'date':day})
+		print meal['breakfast']
+	foodResponse = foods.find({"user":name})
+	foodList = []
+	for food in foodResponse:
+		foodList.append(food)
+	return render_template('diary.html', name=name, foodList=foodList, day=day)
 
 if __name__ == '__main__':
 	app.run(debug = True)

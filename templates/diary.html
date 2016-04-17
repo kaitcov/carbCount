@@ -3,23 +3,22 @@
 
 <div class="container" style="padding-top: 5%;">
  <div class="page-header">
-        <h1>Diary</h1>
+	 <h1>{{name}}'s Diary - {{day}}</h1>
       </div>
       <div class="row">
         <div class="col-sm-4">
           <div class="panel panel-success" style="width:250%">
             <div class="panel-heading">
-              <h3 class="panel-title">Breakfast</h3>
+				<h3 class="panel-title">Breakfast</h3>
             </div>
             <div class="panel-body">
-			<form>
-  			<select name="cars">
-    			<option value="volvo">Option</option>
-    			<option value="saab">Option</option>
-    			<option value="fiat">Option</option>
-    			<option value="audi">Option</option>
+			<form method="POST">
+  			<select name="userFoods">
+			{% for food in foodList %}
+				<option value="{{food['_id']}},breakfast">{{food['foodName']}}</option>
+			{% endfor %}
   			</select>
-		<button type="button" class="btn btn-default">Add</button>
+		<button type="submit" class="btn btn-default">Add</button>
 		</form>
             </div>
           </div>
@@ -33,14 +32,13 @@
               <h3 class="panel-title">Lunch</h3>
             </div>
 		<div class="panel-body">
-			<form>
-  			<select name="cars">
-    			<option value="volvo">Option</option>
-    			<option value="saab">Option</option>
-    			<option value="fiat">Option</option>
-    			<option value="audi">Option</option>
+			<form method="POST">
+  			<select name="userFoods">
+			{% for food in foodList %}
+				<option value="{{food['_id']}},lunch">{{food['foodName']}}</option>
+			{% endfor %}
   			</select>
-		<button type="button" class="btn btn-default">Add</button>
+		<button type="submit" class="btn btn-default">Add</button>
 		</form>
             </div>
           </div>
@@ -54,14 +52,13 @@
               <h3 class="panel-title">Dinner</h3>
             </div>
 		<div class="panel-body">
-			<form>
-  			<select name="cars">
-    			<option value="volvo">Option</option>
-    			<option value="saab">Option</option>
-    			<option value="fiat">Option</option>
-    			<option value="audi">Option</option>
+			<form method="POST">
+  			<select name="userFoods">
+			{% for food in foodList %}
+				<option value="{{food['_id']}},dinner">{{food['foodName']}}</option>
+			{% endfor %}
   			</select>
-		<button type="button" class="btn btn-default">Add</button>
+		<button type="submit" class="btn btn-default">Add</button>
 		</form>
             </div>
           </div>
@@ -75,14 +72,13 @@
               <h3 class="panel-title">Snack</h3>
             </div>
 		<div class="panel-body">
-			<form>
-  			<select name="cars">
-    			<option value="volvo">Option</option>
-    			<option value="saab">Option</option>
-    			<option value="fiat">Option</option>
-    			<option value="audi">Option</option>
+			<form method="POST">
+  			<select name="userFoods">
+			{% for food in foodList %}
+				<option value="{{food['_id']}},snack">{{food['foodName']}}</option>
+			{% endfor %}
   			</select>
-		<button type="button" class="btn btn-default">Add</button>
+		<button type="submit" class="btn btn-default">Add</button>
 		</form>
             </div>
           </div>
