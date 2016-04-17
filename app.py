@@ -10,6 +10,7 @@ db = client.ccDatabase
 foods = db.foods
 people = db.people
 meals = db.meals
+goals = db.goals
 
 name=None
 
