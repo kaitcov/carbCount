@@ -100,6 +100,10 @@ def diary():
 		foodList.append(food)
 	return render_template('diary.html', name=name, foodList=foodList, day=day, breakfastList=breakfastList, lunchList=lunchList, dinnerList=dinnerList, snackList=snackList, totalCarbs=totalCarbs, totalFiber=totalFiber, totalCalories=totalCalories)
 
+@app.route('/goals')
+def goals():
+	return render_template('goals.html', name=name)
+
 if __name__ == '__main__':
 	app.run(debug = True)
 
