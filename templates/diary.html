@@ -12,7 +12,7 @@
 				<h3 class="panel-title">Breakfast</h3>
             </div>
             <div class="panel-body">
-			<form method="POST">
+			<form onsubmit="setTimeout(function () { window.location.reload(); }, 10)" method="POST">
   			<select name="userFoods">
 			{% for food in foodList %}
 				<option value="{{food['_id']}},breakfast">{{food['foodName']}}</option>
@@ -30,24 +30,14 @@
               </tr>
             </thead>
             <tbody>
+			{% for food in breakfastList %}
               <tr>
-                <td>Some food</td>
-                <td>Some carbs</td>
-                <td>Some fiber</td>
-                <td>Some calories</td>
+				  <td>{{food['foodName']}}</td>
+				  <td>{{food['foodCarbs']}}</td>
+				  <td>{{food['foodFiber']}}</td>
+				  <td>{{food['foodCalories']}}</td>
               </tr>
-              <tr>
-                <td>food</td>
-                <td>carbs</td>
-                <td>fiber</td>
-                <td>calc</td>
-              </tr>
-              <tr>
-                <td>food</td>
-                <td>carbs</td>
-                <td>fiber</td>
-                <td>cals</td>
-              </tr>
+			{% endfor %}
             </tbody>
           </table>
             </div>
@@ -62,7 +52,7 @@
               <h3 class="panel-title">Lunch</h3>
             </div>
 		<div class="panel-body">
-			<form method="POST">
+			<form onsubmit="setTimeout(function () { window.location.reload(); }, 10)" method="POST">
   			<select name="userFoods">
 			{% for food in foodList %}
 				<option value="{{food['_id']}},lunch">{{food['foodName']}}</option>
@@ -80,24 +70,14 @@
               </tr>
             </thead>
             <tbody>
+			{% for food in lunchList %}
               <tr>
-                <td>Some food</td>
-                <td>Some carbs</td>
-                <td>Some fiber</td>
-                <td>Some calories</td>
+				  <td>{{food['foodName']}}</td>
+				  <td>{{food['foodCarbs']}}</td>
+				  <td>{{food['foodFiber']}}</td>
+				  <td>{{food['foodCalories']}}</td>
               </tr>
-              <tr>
-                <td>food</td>
-                <td>carbs</td>
-                <td>fiber</td>
-                <td>calc</td>
-              </tr>
-              <tr>
-                <td>food</td>
-                <td>carbs</td>
-                <td>fiber</td>
-                <td>cals</td>
-              </tr>
+			{% endfor %}
             </tbody>
           </table>
             </div>
@@ -112,7 +92,7 @@
               <h3 class="panel-title">Dinner</h3>
             </div>
 		<div class="panel-body">
-			<form method="POST">
+			<form onsubmit="setTimeout(function () { window.location.reload(); }, 10)" method="POST">
   			<select name="userFoods">
 			{% for food in foodList %}
 				<option value="{{food['_id']}},dinner">{{food['foodName']}}</option>
@@ -130,24 +110,14 @@
               </tr>
             </thead>
             <tbody>
+			{% for food in dinnerList %}
               <tr>
-                <td>Some food</td>
-                <td>Some carbs</td>
-                <td>Some fiber</td>
-                <td>Some calories</td>
+				  <td>{{food['foodName']}}</td>
+				  <td>{{food['foodCarbs']}}</td>
+				  <td>{{food['foodFiber']}}</td>
+				  <td>{{food['foodCalories']}}</td>
               </tr>
-              <tr>
-                <td>food</td>
-                <td>carbs</td>
-                <td>fiber</td>
-                <td>calc</td>
-              </tr>
-              <tr>
-                <td>food</td>
-                <td>carbs</td>
-                <td>fiber</td>
-                <td>cals</td>
-              </tr>
+			{% endfor %}
             </tbody>
           </table>
             </div>
@@ -162,7 +132,7 @@
               <h3 class="panel-title">Snack</h3>
             </div>
 		<div class="panel-body">
-			<form method="POST">
+			<form onsubmit="setTimeout(function () { window.location.reload(); }, 10)" method="POST">
   			<select name="userFoods">
 			{% for food in foodList %}
 				<option value="{{food['_id']}},snack">{{food['foodName']}}</option>
@@ -180,24 +150,14 @@
               </tr>
             </thead>
             <tbody>
+			{% for food in snackList %}
               <tr>
-                <td>Some food</td>
-                <td>Some carbs</td>
-                <td>Some fiber</td>
-                <td>Some calories</td>
+				  <td>{{food['foodName']}}</td>
+				  <td>{{food['foodCarbs']}}</td>
+				  <td>{{food['foodFiber']}}</td>
+				  <td>{{food['foodCalories']}}</td>
               </tr>
-              <tr>
-                <td>food</td>
-                <td>carbs</td>
-                <td>fiber</td>
-                <td>calc</td>
-              </tr>
-              <tr>
-                <td>food</td>
-                <td>carbs</td>
-                <td>fiber</td>
-                <td>cals</td>
-              </tr>
+			{% endfor %}
             </tbody>
           </table>
             </div>

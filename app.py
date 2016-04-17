@@ -1,6 +1,7 @@
 from flask import Flask, render_template, redirect, url_for, request
 from pymongo import MongoClient
 import datetime
+from bson.objectid import ObjectId
 
 app = Flask(__name__)
 
@@ -50,30 +51,35 @@ def createFood():
 
 @app.route('/diary', methods=['GET', 'POST'])
 def diary():
+	print foods.find_one({'user':name})
 	now = datetime.datetime.now()
 	day = str(now.month) + "/" + str(now.day) + "/" + str(now.year)
+	breakfastList = []
+	lunchList = []
+	dinnerList = []
+	snackList = []
+	post = {'user':name, 'date':day, 'breakfast':[], 'lunch':[], 'dinner':[], 'snack':[]}
+	meal_response = meals.insert_one(post).inserted_id
+	meal = meals.find_one({'user':name, 'date':day})		
+	for item in meal['breakfast']:
+		foodResult = foods.find_one({"_id":ObjectId(item['foodID'])})
+		breakfastList.append(foodResult)
+	for item in meal['lunch']:
+		foodResult = foods.find_one({"_id":ObjectId(item['foodID'])})
+		lunchList.append(foodResult)
+	for item in meal['dinner']:
+		foodResult = foods.find_one({"_id":ObjectId(item['foodID'])})
+		dinnerList.append(foodResult)
+	for item in meal['snack']:
+		foodResult = foods.find_one({"_id":ObjectId(item['foodID'])})
+		snackList.append(foodResult)
+
 	if request.method == "POST":
 		selectedFood = request.form.get('userFoods')
 		selectedFood = selectedFood.split(',')
 		print selectedFood[1]
-		post = {'user':name, 'date':day, selectedFood[1]:[]}
-		meal_response = meals.insert_one(post).inserted_id
 		result = meals.update_one({'user':name, 'date':day}, { '$push': {selectedFood[1]: {'foodID': selectedFood[0]}}})
 		print result.matched_count
-		breakfastList = []
-		lunchList = []
-		dinnerList = []
-		snackList = []
-		if result.matched_count != 0:
-			meal = meals.find_one({'user':name, 'date':day})
-			for item in meal['breakfast']:
-				breakfastList.append(item)
-			for item in meal['lunch']:
-				lunchList.append(item)
-			for item in meal['dinner']:
-				dinnerList.append(item)
-			for item in meal['snack']:
-				snackList.append(item)
 	foodResponse = foods.find({"user":name})
 	foodList = []
 	for food in foodResponse:
