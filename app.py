@@ -51,6 +51,9 @@ def createFood():
 
 @app.route('/diary', methods=['GET', 'POST'])
 def diary():
+	totalCarbs = 0
+	totalFiber = 0
+	totalCalories = 0
 	print foods.find_one({'user':name})
 	now = datetime.datetime.now()
 	day = str(now.month) + "/" + str(now.day) + "/" + str(now.year)
@@ -63,28 +66,38 @@ def diary():
 	meal = meals.find_one({'user':name, 'date':day})		
 	for item in meal['breakfast']:
 		foodResult = foods.find_one({"_id":ObjectId(item['foodID'])})
+		totalCarbs += int(foodResult['foodCarbs'])
+		totalFiber += int(foodResult['foodFiber'])
+		totalCalories += int(foodResult['foodCalories'])
 		breakfastList.append(foodResult)
 	for item in meal['lunch']:
 		foodResult = foods.find_one({"_id":ObjectId(item['foodID'])})
+		totalCarbs += int(foodResult['foodCarbs'])
+		totalFiber += int(foodResult['foodFiber'])
+		totalCalories += int(foodResult['foodCalories'])
 		lunchList.append(foodResult)
 	for item in meal['dinner']:
 		foodResult = foods.find_one({"_id":ObjectId(item['foodID'])})
+		totalCarbs += int(foodResult['foodCarbs'])
+		totalFiber += int(foodResult['foodFiber'])
+		totalCalories += int(foodResult['foodCalories'])
 		dinnerList.append(foodResult)
 	for item in meal['snack']:
 		foodResult = foods.find_one({"_id":ObjectId(item['foodID'])})
+		totalCarbs += int(foodResult['foodCarbs'])
+		totalFiber += int(foodResult['foodFiber'])
+		totalCalories += int(foodResult['foodCalories'])
 		snackList.append(foodResult)
 
 	if request.method == "POST":
 		selectedFood = request.form.get('userFoods')
 		selectedFood = selectedFood.split(',')
-		print selectedFood[1]
 		result = meals.update_one({'user':name, 'date':day}, { '$push': {selectedFood[1]: {'foodID': selectedFood[0]}}})
-		print result.matched_count
 	foodResponse = foods.find({"user":name})
 	foodList = []
 	for food in foodResponse:
 		foodList.append(food)
-	return render_template('diary.html', name=name, foodList=foodList, day=day, breakfastList=breakfastList, lunchList=lunchList, dinnerList=dinnerList, snackList=snackList)
+	return render_template('diary.html', name=name, foodList=foodList, day=day, breakfastList=breakfastList, lunchList=lunchList, dinnerList=dinnerList, snackList=snackList, totalCarbs=totalCarbs, totalFiber=totalFiber, totalCalories=totalCalories)
 
 if __name__ == '__main__':
 	app.run(debug = True)
