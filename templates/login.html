@@ -2,10 +2,13 @@
 {% block content %}
     <!-- Custom styles for this template -->
     <link href="http://getbootstrap.com/examples/signin/signin.css" rel="stylesheet">
+    <div class="container" align="center">
+<img class="img-responsive" src="../static/img/9b79bde19b07cbc80daeff1aaa085b5c.png" alt="Chania">	
+    </div>
     <div class="container">
 
       <form class="form-signin" method="post">
-        <h2 class="form-signin-heading">Please sign in</h2>
+        <h2 class="form-signin-heading" align= "center" style="padding-bottom: 5%">Please sign in.</h2>
         <label for="username" class="sr-only">Email address</label>
         <input name="username" class="form-control" placeholder="Username" required autofocus value="{{request.form.username }}">
         <label for="password" class="sr-only">Password</label>
@@ -15,7 +18,8 @@
             <input type="checkbox" value="remember-me"> Remember me
           </label>
         </div>
-        <button class="btn btn-lg btn-primary btn-block" type="submit" value="Login">Sign in</button>
+	<p> <br></br> </p>
+        <button class="btn btn-lg btn-success btn-block" type="submit" value="Login">Sign in</button>
       </form>
       {% if error %}
       <p class="error"><strong>Error:</strong> {{error}}
