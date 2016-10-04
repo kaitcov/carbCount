@@ -12,7 +12,6 @@ people = db.people
 meals = db.meals
 goalsColl = db.goals
 
-name=None
 
 @app.route('/', methods=['GET', 'POST'])
 def login_page():
@@ -65,7 +64,11 @@ def diary():
 	dinnerList = []
 	snackList = []
 	post = {'user':name, 'date':day, 'breakfast':[], 'lunch':[], 'dinner':[], 'snack':[]}
-	meal_response = meals.insert_one(post).inserted_id
+
+        # check to see if there is already a diary for this user today
+        if meals.find({'user': name, 'date':day}).count() == 0:
+	    meal_response = meals.insert_one(post).inserted_id
+
 	meal = meals.find_one({'user':name, 'date':day})		
 	goalFind = goalsColl.find_one({'user':name})
 	if goalFind != None:
